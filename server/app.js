@@ -8,6 +8,9 @@ import tipoVehiculoRoutes from './routes/tipoVehiculos.routes.js'
 import modelosRoutes from './routes/modelos.routes.js'; 
 import clientesRoutes from './routes/cliente.routes.js';
 import EmpleadosRoutes from './routes/Empleados.routes.js';
+import vehiculosRoutes from './routes/vehiculos.routes.js';
+import rentasRoutes from './routes/renta.routes.js';
+import inspeccionRoutes from './routes/inspeccion.routes.js';
 
 
 
@@ -23,6 +26,9 @@ app.use('/tipovehiculo', tipoVehiculoRoutes);
 app.use('/modelos', modelosRoutes); 
 app.use('/clientes', clientesRoutes); 
 app.use('/empleados', EmpleadosRoutes); 
+app.use('/vehiculos', vehiculosRoutes); 
+app.use('/renta', rentasRoutes); 
+app.use('/inspeccion', inspeccionRoutes); 
 
 // Check de conexion a la base de datos
 try {
