@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize(
+export const db = new Sequelize(
     'rac', 
     'root',
     'Scarface27#',
@@ -13,4 +13,3 @@ const db = new Sequelize(
     }
 ); 
 
-export default db; 

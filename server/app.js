@@ -1,12 +1,13 @@
 import cors from 'cors';
 import db from './database/db.js';
+import Express from 'express'; 
+//Imports de los enrutamientos de los conntroladores  
 import marcasRoutes from './routes/marca.routes.js';
 import combustibleRoutes from './routes/combustible.routes.js';
 import tipoVehiculoRoutes from './routes/tipoVehiculos.routes.js'
 import modelosRoutes from './routes/modelos.routes.js'; 
 import clientesRoutes from './routes/cliente.routes.js';
 import EmpleadosRoutes from './routes/Empleados.routes.js';
-import Express from 'express'; 
 
 
 
