@@ -28,22 +28,38 @@ const RentaModel = db.define('vehiculos', {
     tipovehiculoid: 
     {
         type: DataTypes.INTEGER, 
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'tipovehiculos',
+            column: 'id'
+        }
     }, 
 
     marcaid: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false, 
+        references: {
+            table: 'marcas',
+            column: 'id'
+        }
     },
 
     modeloid: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'modelos',
+            column: 'id'
+        }
     },
 
     tipocombustibleid: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'tipocombustibles',
+            column: 'id'
+        }
     },
 
     estado: {

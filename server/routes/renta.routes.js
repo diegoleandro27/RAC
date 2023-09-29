@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createRenta, deleteRenta, getAllRenta, getRenta, putRenta } from "../controllers/RentaController";
+import { createRenta, deleteRenta, getAllRenta, getRenta, putRenta } from "../controllers/RentaController.js";
 const router = Router(); 
 
 

@@ -5,71 +5,84 @@ const InspeccionModel = db.define('inspeccion', {
     vehiculoid: 
     {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'vehiculos',
+            column: 'id'
+        }
     }, 
 
     clienteid: 
     {
-        type: DataTypes.BIGINT, 
-        allowNull: false
+        type: DataTypes.INTEGER, 
+        allowNull: false,
+        references: {
+            table: 'clientes',
+            column: 'id'
+        }
     }, 
     
     ralladuras: {
-        type: DataTypes.BIGINT, 
-        allowNull: false
+        type: DataTypes.BOOLEAN, 
+        allowNull: false,
+        
     }, 
     
-    cantidadcombustible: 
+    cantcombustible: 
     {
         type: DataTypes.BIGINT,
         allowNull: false
     }, 
     
-    gomarespuesta: 
+    gomaresp: 
     {
-        type: DataTypes.INTEGER, 
+        type: DataTypes.BOOLEAN, 
         allowNull: false
     }, 
 
     gato: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 
-    roturascristal: {
-        type: DataTypes.INTEGER,
+    rotcristal: {
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 
     goma1: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 
     goma2: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 
     goma3: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 
     goma4: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 
     fecha: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false
     },
 
     empleadoid: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+            table: 'empleados',
+            column: 'id'
+        }
     }
 });
 
 
-export default RentaModel;
+export default InspeccionModel;

@@ -5,18 +5,30 @@ const RentaModel = db.define('renta', {
     empleadoid: 
     {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'empleados',
+            column: 'id'
+        }
     }, 
 
     vehiculoid: 
     {
         type: DataTypes.INTEGER, 
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'vehiculos',
+            column: 'id'
+        }
     }, 
     
     clienteid: {
         type: DataTypes.INTEGER, 
-        allowNull: false
+        allowNull: false,
+        references: {
+            table: 'clientes',
+            column: 'id'
+        }
     }, 
     
     fecharenta: 

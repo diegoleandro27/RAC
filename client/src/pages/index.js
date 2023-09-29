@@ -1,0 +1,9 @@
+export {default as Home} from "./Home/Home";
+export {default as GestionClientes} from "./GestionClientes/GestionClientes";
+export {default as GestionCombustible} from "./GestionCombustible/GestionCombustible";
+export {default as GestionTipoVehiculo} from "./GestionTipoVehiculo/GestionTipoVehiculo";
+export {default as GestionEmpleado} from "./GestionEmpleado/GestionEmpleado";
+export {default as GestionVehiculo} from "./GestionVehiculos/GestionVehiculos";
+export {default as GestionRenta} from "./GestionRenta/GestionRenta";
+export {default as GestionMarcas} from "./GestionMarcas/GestionMarcas";
+export {default as GestionModelos} from "./GestionModelos/GestionModelos";

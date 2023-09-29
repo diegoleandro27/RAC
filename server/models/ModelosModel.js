@@ -3,7 +3,11 @@ import { DataTypes } from "sequelize"; //Importing Sequelize
 
 const TipoVehiculoModel = db.define('modelos', {
     idmarcas: {
-        type: DataTypes.INTEGER.UNSIGNED //Llave foranea de tabla marcas 
+        type: DataTypes.INTEGER,
+        references: {
+            table: 'marcas',
+            column: 'id'
+        }//Llave foranea de tabla marcas 
     }, 
     descripcion: {
         type: DataTypes.STRING, 

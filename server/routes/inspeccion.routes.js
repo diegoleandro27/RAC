@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createInspeccion, deleteInspeccion, getAllInspeccion, getInspeccion, putInspeccion } from "../controllers/InspeccionController";
+import { createInspeccion, deleteInspeccion, getAllInspeccion, getInspeccion, putInspeccion } from "../controllers/InspeccionController.js";
 const router = Router(); 
 
 
