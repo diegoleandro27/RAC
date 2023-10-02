@@ -1,0 +1,21 @@
+.container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.col .btn-left {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 180px;
+}
+.btn {
+  margin: 0.2rem;
+}
+
+
