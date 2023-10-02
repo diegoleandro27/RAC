@@ -1,7 +1,5 @@
 .container {
-  text-align: center;
-  margin-top: 40px;
-  flex-direction: column;
+  margin: 30px 10px;
 }
 
 .title {
@@ -9,6 +7,9 @@
   margin-bottom: 20px;
 }
 
+.form {
+  border: 20px #000;
+}
 .col .btn-left {
   display: flex;
   justify-content: center;

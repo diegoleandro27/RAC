@@ -8,9 +8,9 @@ const URI = "http://localhost:3001/clientes";
 
 const CreateCliente = () => {
   const [nombre, setNombre] = useState("");
-  const [cedula, setCedula] = useState(0);
-  const [tarjetacr, setTarjetacr] = useState(0);
-  const [limitecr, setLimitecr] = useState(0);
+  const [cedula, setCedula] = useState();
+  const [tarjetacr, setTarjetacr] = useState();
+  const [limitecr, setLimitecr] = useState();
   const [tipopersona, setTipoPersona] = useState("");
   const [Estado, setEstado] = useState("");
   const navigate = useNavigate();
@@ -30,9 +30,9 @@ const CreateCliente = () => {
   };
 
   return (
-    <div classNameName="container">
+    <div className="container">
       <h3>Crear Cliente</h3>
-      <form className="row g-3">
+      <form onSubmit={storeClientes} className="form row g-3">
         <div className="col-md-6">
           <label for="inputNombre" className="form-label">
             Nombre
@@ -69,7 +69,6 @@ const CreateCliente = () => {
             type="number"
             className="form-control"
             id="inputTarjeta"
-            placeholder="00000000000000"
             value={tarjetacr}
             onChange={(e) => {
               setTarjetacr(e.target.value);
@@ -84,33 +83,48 @@ const CreateCliente = () => {
             type="number"
             className="form-control"
             id="inputLimite"
-            placeholder="00000000000..."
             value={limitecr}
             onChange={(e) => {
               setLimitecr(e.target.value);
             }}
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-md-7">
           <label for="inputState" className="form-label">
-            State
+            Tipo de persona
           </label>
-          <select id="inputState" className="form-select">
+          <select
+            id="inputState"
+            className="form-select"
+            value={tipopersona}
+            onChange={(e) => {
+              setTipoPersona(e.target.value);
+            }}
+          >
             <option selected>Choose...</option>
-            <option>...</option>
+            <option>Fisico</option>
+            <option>Juridico</option>
           </select>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-5">
           <label for="inputState" className="form-label">
-            State
+            Estado
           </label>
-          <select id="inputState" className="form-select">
+          <select
+            id="inputState"
+            className="form-select"
+            value={Estado}
+            onChange={(e) => {
+              setEstado(e.target.value);
+            }}
+          >
             <option selected>Choose...</option>
-            <option>...</option>
+            <option>Activo</option>
+            <option>Inactivo</option>
           </select>
         </div>
         <div className="col-12">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary col-md-5">
             Guardar
           </button>
         </div>
