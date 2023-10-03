@@ -12,8 +12,9 @@ const TipoVehiculoModel = db.define('modelos', {
     descripcion: {
         type: DataTypes.STRING, 
         allowNull: false 
-    }
-});
+    },
+    
+},);
 
 
 export default TipoVehiculoModel;

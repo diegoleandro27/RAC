@@ -53,7 +53,7 @@ const RentaModel = db.define('renta', {
     comentario: {
         type: DataTypes.STRING
     }
-});
+},);
 
 
 export default RentaModel;

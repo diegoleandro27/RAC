@@ -23,11 +23,15 @@ const EmpleadosModel = db.define('empleados', {
     {
         type: DataTypes.DECIMAL
     }, 
+    fechaingreso: {
+        type: DataTypes.DATE, 
+        allowNull:false
+    }, 
     
     Estado: {
         type: DataTypes.STRING
     }
-});
+}, );
 
 
 export default EmpleadosModel;

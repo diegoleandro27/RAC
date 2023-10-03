@@ -65,7 +65,8 @@ const RentaModel = db.define('vehiculos', {
     estado: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    
 });
 
 

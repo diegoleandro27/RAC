@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import "./gestionClientes.css";
+import "../gestionAll.css";
 
 const URI = "http://localhost:3001/clientes";
 

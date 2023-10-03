@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import "./gestionCombustible.css";
+import "../gestionAll.css";
 import Swal from "sweetalert2";
 const URI = "http://localhost:3001/tipocombustible";
 

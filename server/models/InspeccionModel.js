@@ -82,7 +82,7 @@ const InspeccionModel = db.define('inspeccion', {
             column: 'id'
         }
     }
-});
+}, );
 
 
 export default InspeccionModel;
