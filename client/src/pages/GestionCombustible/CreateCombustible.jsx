@@ -10,7 +10,7 @@ const CreateCombustible = () => {
   const [descripcion, setDescripcion] = useState("");
   const navigate = useNavigate();
 
-  const store = async (e) => {
+  const storeCombustible = async (e) => {
     Swal.fire("Agregado", "Tu combustible ha sido agregado", "success");
     e.preventDefault();
     await axios.post(URI, { descripcion: descripcion });
@@ -20,7 +20,7 @@ const CreateCombustible = () => {
   return (
     <div className="container w-50 align-items-center">
       <h3> Create combustible </h3>
-      <form onSubmit={store}>
+      <form onSubmit={storeCombustible}>
         <div className="mb-3">
           <label htmlFor="descripcion" className="form-label">
             Nombre del combustible

@@ -20,7 +20,7 @@ const SideBarData = [
   {
     title: "Gestion Vehiculo",
     path: "/gestionVehiculo",
-    icons: <AiIcons.AiOutlineShoppingCart />,
+    icons: <AiIcons.AiFillCar />,
     cName: "nav-text",
   },
   {

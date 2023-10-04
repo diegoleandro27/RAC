@@ -1,10 +1,12 @@
-import db from "../database/db.js"; //Importing databse 
-import { DataTypes } from "sequelize"; //Importing Sequelize 
+import { DataTypes } from "sequelize";
+import db from "../database/db.js";
 
-const MarcaModel = db.define('marcas', {
-    descripcion: {type: DataTypes.STRING},
-    
-},);
+const MarcaModels = db.define('marcas', {
+    nombreModelo: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    // Other fields for the "marca" model
+});
 
-
-export default MarcaModel;
+export default MarcaModels;

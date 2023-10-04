@@ -1,11 +1,81 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+// import { Link } from "react-router-dom";
+import "../gestionAll.css";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const GestionModelos = () => {
+const URI = "http://localhost:3001/modelos";
+const GestionModelo = () => {
+  const [modelo, setModelo] = useState([]);
+
+  useEffect(() => {
+    getModelo();
+  }, []);
+
+  //mostrar tipo Modelos
+  const getModelo = async () => {
+    try {
+      const res = await axios.get(URI);
+      setModelo(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //Eliminar tipo Modelos
+  const deleteModelo = async (id) => {
+    try {
+      Swal.fire("Eliminado", "Tu Modelo ha sido eliminado", "success");
+      await axios.delete(`${URI}/${id}`);
+      getModelo();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className='modelos'> 
-    <h1>Gestion de Modelos</h1>
-</div>
-  )
-}
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <h1 className="title">Gestion de Modelo</h1>
+          <Link to={"/createModelo"} className="btn btn-primary mb-2 btn-left">
+            Crear Modelo
+          </Link>
+          <table className="table">
+            <thead className="table-primary">
+              <tr>
+                <th>Descripcion</th>
+                <th>ID Marca</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {modelo.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.descripcion}</td>
+                  <td>{item.idmarcas}</td>
+                  <td>
+                    <Link to={`/putModelo/${item.id}`} className="btn btn-info">
+                      <i className="fa-solid fa-pen-to-square"></i>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        deleteModelo(item.id);
+                      }}
+                      className="btn btn-danger"
+                    >
+                      <i className="fa-solid fa-delete-left"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default GestionModelos
+export default GestionModelo;

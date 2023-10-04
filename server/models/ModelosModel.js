@@ -1,7 +1,7 @@
 import db from "../database/db.js"; //Importing databse 
 import { DataTypes } from "sequelize"; //Importing Sequelize 
 
-const TipoVehiculoModel = db.define('modelos', {
+const ModeloModels = db.define('modelos', {
     idmarcas: {
         type: DataTypes.INTEGER,
         references: {
@@ -17,4 +17,4 @@ const TipoVehiculoModel = db.define('modelos', {
 },);
 
 
-export default TipoVehiculoModel;
+export default ModeloModels;

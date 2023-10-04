@@ -8,11 +8,11 @@ const URI = "http://localhost:3001/empleados";
 
 const CreateEmpleado = () => {
   const [nombre, setNombre] = useState("");
-  const [cedula, setCedula] = useState();
-  const [tandlabor, setTandlabor] = useState();
-  const [comision, setComision] = useState();
-  const [fechaingreso, setFechaIngreso] = useState();
-  const [estado, setEstado] = useState("");
+  const [cedula, setCedula] = useState(0);
+  const [tandalabor, setTandlabor] = useState("");
+  const [comisionpr, setComisionpr] = useState(0);
+  const [fechaingreso, setFechaIngreso] = useState(Date);
+  const [Estado, setEstado] = useState("");
   const navigate = useNavigate();
 
   const storeEmpleados = async (e) => {
@@ -20,10 +20,10 @@ const CreateEmpleado = () => {
     await axios.post(URI, {
       nombre: nombre,
       cedula: cedula,
-      tandlabor: tandlabor,
-      comision: comision,
+      tandalabor: tandalabor,
+      comisionpr: comisionpr,
       fechaingreso: fechaingreso,
-      estado: estado,
+      Estado: Estado,
     });
     Swal.fire("Agregado", "Tu Empleado ha sido agregado", "success");
     navigate("/gestionEmpleado");
@@ -34,13 +34,13 @@ const CreateEmpleado = () => {
       <h3>Crear Empleado</h3>
       <form onSubmit={storeEmpleados} className="form row g-3">
         <div className="col-md-6">
-          <label for="inputNombre" className="form-label">
+          <label htmlFor="inputNombre" className="form-label">
             Nombre
           </label>
           <input
             type="text"
             className="form-control"
-            id="inputName"
+            id="inputNombre"
             value={nombre}
             onChange={(e) => {
               setNombre(e.target.value);
@@ -49,12 +49,12 @@ const CreateEmpleado = () => {
           />
         </div>
         <div className="col-md-6">
-          <label for="inputCedula" className="form-label">
-            Cedula
+          <label htmlFor="inputCedula" className="form-label">
+            cedula
           </label>
           <input
-            maxLength={11}
             type="text"
+            maxLength={11} // You can adjust the max length as needed
             className="form-control"
             id="inputCedula"
             value={cedula}
@@ -65,66 +65,70 @@ const CreateEmpleado = () => {
           />
         </div>
         <div className="col-12">
-          <label for="inputTarjeta" className="form-label">
+          <label htmlFor="inputTarjeta" className="form-label">
             Tanda Laboral
           </label>
           <select
-            id="inputState"
+            id="inputTarjeta"
             className="form-select"
-            value={tandlabor}
+            value={tandalabor}
             onChange={(e) => {
               setTandlabor(e.target.value);
             }}
             required
           >
-            <option selected>Choose...</option>
+            <option disabled selected>
+              Choose...
+            </option>
             <option>Matutino</option>
             <option>Vespertina</option>
             <option>Nocturna</option>
           </select>
         </div>
         <div className="col-5">
-          <label for="inputLimite" className="form-label">
-            Porciento de Comision
+          <label htmlFor="inputLimite" className="form-label">
+            Porcentaje de Comision
           </label>
           <input
             type="number"
             className="form-control"
             id="inputLimite"
-            value={comision}
+            value={comisionpr}
             onChange={(e) => {
-              setComision(e.target.value);
+              setComisionpr(e.target.value);
             }}
             step={0.1}
           />
         </div>
         <div className="col-md-7">
-          <label for="inputState" className="form-label">
+          <label htmlFor="inputFechaIngreso" className="form-label">
             Fecha de ingreso
           </label>
           <input
             type="date"
-            name="fechaIngreso"
-            id=""
+            id="inputFechaIngreso"
             value={fechaingreso}
             onChange={(e) => setFechaIngreso(e.target.value)}
             className="form-control"
             required
           />
         </div>
-        <div className=" col-md-12">
-          <label for="inputState" className="form-label">
-            estado
+        <div className="col-md-12">
+          <label htmlFor="inputEstado" className="form-label">
+            Estado
           </label>
           <select
-            id="inputState"
+            id="inputEstado"
             className="form-select"
-            value={estado}
+            value={Estado}
             onChange={(e) => {
               setEstado(e.target.value);
             }}
+            required
           >
-            <option selected>Choose...</option>
+            <option disabled selected>
+              Choose...
+            </option>
             <option>Activo</option>
             <option>Inactivo</option>
           </select>

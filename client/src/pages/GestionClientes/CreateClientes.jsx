@@ -8,11 +8,11 @@ const URI = "http://localhost:3001/clientes";
 
 const CreateCliente = () => {
   const [nombre, setNombre] = useState("");
-  const [cedula, setCedula] = useState();
-  const [tarjetacr, setTarjetacr] = useState();
-  const [limitecr, setLimitecr] = useState();
+  const [cedula, setCedula] = useState(0);
+  const [tarjetacr, setTarjetacr] = useState(0);
+  const [limitecr, setLimitecr] = useState(0);
   const [tipopersona, setTipoPersona] = useState("");
-  const [Estado, setEstado] = useState("");
+  const [estado, setEstado] = useState("");
   const navigate = useNavigate();
 
   const storeClientes = async (e) => {
@@ -23,7 +23,7 @@ const CreateCliente = () => {
       tarjetacr: tarjetacr,
       limitecr: limitecr,
       tipopersona: tipopersona,
-      Estado: Estado,
+      estado: estado,
     });
     Swal.fire("Agregado", "Tu Cliente ha sido agregado", "success");
     navigate("/gestionClientes");
@@ -52,7 +52,8 @@ const CreateCliente = () => {
             Cedula
           </label>
           <input
-            type="number"
+            type="text"
+            maxLength={11}
             className="form-control"
             id="inputCedula"
             value={cedula}
@@ -66,7 +67,8 @@ const CreateCliente = () => {
             Tarjeta de Credito
           </label>
           <input
-            type="number"
+            type="text"
+            maxLength={16}
             className="form-control"
             id="inputTarjeta"
             value={tarjetacr}
@@ -113,7 +115,7 @@ const CreateCliente = () => {
           <select
             id="inputState"
             className="form-select"
-            value={Estado}
+            value={estado}
             onChange={(e) => {
               setEstado(e.target.value);
             }}

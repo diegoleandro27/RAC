@@ -6,32 +6,29 @@ const EmpleadosModel = db.define('empleados', {
     {
         type: DataTypes.STRING,
         allowNull: false
-    }, 
-
+    },
     cedula: 
     {
-        type: DataTypes.BIGINT, 
+        type: DataTypes.INTEGER, 
         allowNull: false
     }, 
-    
     tandalabor: {
         type: DataTypes.STRING, 
         allowNull: false
     }, 
-    
     comisionpr: 
     {
-        type: DataTypes.DECIMAL
+        type: DataTypes.INTEGER
     }, 
     fechaingreso: {
         type: DataTypes.DATE, 
         allowNull:false
     }, 
-    
     Estado: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     }
-}, );
+});
 
 
 export default EmpleadosModel;

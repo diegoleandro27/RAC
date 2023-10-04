@@ -65,7 +65,7 @@ const GestionEmpleado = () => {
                   <td>{item.tandalabor}</td>
                   <td>{item.comisionpr}</td>
                   <td>{item.fechaingreso}</td>
-                  <td>{item.estado}</td>
+                  <td>{item.Estado}</td>
                   <td>
                     <Link
                       to={`/putEmpleado/${item.id}`}

@@ -3,15 +3,15 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "../gestionAll.css";
 import Swal from "sweetalert2";
-const URI = "http://localhost:3001/tipocombustible";
+const URI = "http://localhost:3001/empleados";
 
 const EditCombustible = () => {
   const [nombre, setNombre] = useState("");
   const [cedula, setCedula] = useState();
-  const [tandlabor, setTandlabor] = useState();
-  const [comision, setComision] = useState();
-  const [fechaingreso, setFechaIngreso] = useState();
-  const [estado, setEstado] = useState("");
+  const [tandalabor, setTandlabor] = useState("");
+  const [comisionpr, setComisionpr] = useState(0);
+  const [fechaingreso, setFechaIngreso] = useState(Date);
+  const [Estado, setEstado] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -22,15 +22,15 @@ const EditCombustible = () => {
   const getCombustibleById = async () => {
     try {
       const res = await axios.get(`${URI}/${id}`);
-      setNombre(res.data.descripcion);
-      setCedula(res.data.descripcion);
-      setTandlabor(res.data.descripcion);
-      setComision(res.data.descripcion);
-      setFechaIngreso(res.data.descripcion);
-      setEstado(res.data.descripcion);
+      const data = res.data; // Employee data from the API
+      setNombre(data.nombre);
+      setCedula(data.cedula);
+      setTandlabor(data.tandalabor);
+      setComisionpr(data.comisionpr);
+      setFechaIngreso(data.fechaingreso);
+      setEstado(data.Estado);
     } catch (error) {
-      // Handle errors here (e.g., show an error message)
-      console.error("Error fetching combustible:", error);
+      console.error("Error fetching empleado:", error);
     }
   };
 
@@ -41,23 +41,22 @@ const EditCombustible = () => {
       await axios.put(`${URI}/${id}`, {
         nombre: nombre,
         cedula: cedula,
-        tandlabor: tandlabor,
-        comision: comision,
+        tandalabor: tandalabor,
+        comisionpr: comisionpr,
         fechaingreso: fechaingreso,
-        estado: estado,
+        Estado: Estado,
       });
-      Swal.fire("Actualizado", "Tu combustible ha sido Actualizado", "success");
+      Swal.fire("Actualizado", "Tu empleado ha sido Actualizado", "success");
 
-      navigate("/gestionEmpleado  ");
+      navigate("/gestionEmpleado");
     } catch (error) {
-      // Handle errors here (e.g., show an error message)
-      console.error("Error updating combustible:", error);
+      console.error("Error updating empleado:", error);
     }
   };
 
   return (
     <div className="container">
-      <h3>Crear Empleado</h3>
+      <h3>Actualizar Empleado</h3>
       <form onSubmit={updateEmpleado} className="form row g-3">
         <div className="col-md-6">
           <label for="inputNombre" className="form-label">
@@ -94,7 +93,7 @@ const EditCombustible = () => {
           <select
             id="inputState"
             className="form-select"
-            value={tandlabor}
+            value={tandalabor}
             onChange={(e) => {
               setTandlabor(e.target.value);
             }}
@@ -105,7 +104,7 @@ const EditCombustible = () => {
             <option>Nocturna</option>
           </select>
         </div>
-        <div className="col-3">
+        <div className="col-5">
           <label for="inputLimite" className="form-label">
             Porciento de Comision
           </label>
@@ -113,15 +112,15 @@ const EditCombustible = () => {
             type="number"
             className="form-control"
             id="inputLimite"
-            value={comision}
+            value={comisionpr}
             onChange={(e) => {
-              setComision(e.target.value);
+              setComisionpr(e.target.value);
             }}
           />
         </div>
         <div className="col-md-7">
           <label for="inputState" className="form-label">
-            Tipo de persona
+            fecha de ingreso
           </label>
           <input
             type="date"
@@ -129,16 +128,17 @@ const EditCombustible = () => {
             id=""
             value={fechaingreso}
             onChange={(e) => setFechaIngreso(e.target.value)}
+            className="form-control"
           />
         </div>
-        <div className="col-md-5">
+        <div className="col-md-12">
           <label for="inputState" className="form-label">
-            estado
+            Estado
           </label>
           <select
             id="inputState"
             className="form-select"
-            value={estado}
+            value={Estado}
             onChange={(e) => {
               setEstado(e.target.value);
             }}
@@ -150,7 +150,7 @@ const EditCombustible = () => {
         </div>
         <div className="col-12">
           <button type="submit" className="btn btn-primary col-md-5">
-            Guardar
+            Actualizar Empleado
           </button>
         </div>
       </form>

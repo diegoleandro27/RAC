@@ -32,10 +32,9 @@ const ClientesModel = db.define('clientes', {
 
     estado: {
         type: DataTypes.STRING
-    },
+    }
 
-}, 
-);
+});
 
 
 export default ClientesModel;
