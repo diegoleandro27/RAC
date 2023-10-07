@@ -1,5 +1,6 @@
 import db from "../database/db.js"; //Importing databse 
 import { DataTypes } from "sequelize"; //Importing Sequelize 
+import MarcaModels from "./MarcaModel.js";
 
 const ModeloModels = db.define('modelos', {
     idmarcas: {
@@ -9,12 +10,14 @@ const ModeloModels = db.define('modelos', {
             column: 'id'
         }//Llave foranea de tabla marcas 
     }, 
-    descripcion: {
+    nombreModelo: {
         type: DataTypes.STRING, 
         allowNull: false 
     },
-    
-},);
+});
+
+
+ModeloModels.belongsTo(MarcaModels, { foreignKey: 'idmarcas', as: 'marca' });
 
 
 export default ModeloModels;

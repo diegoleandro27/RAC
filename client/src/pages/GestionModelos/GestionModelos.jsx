@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
 import "../gestionAll.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import vkw from "../";
 
 const URI = "http://localhost:3001/modelos";
+
 const GestionModelo = () => {
-  const [modelo, setModelo] = useState([]);
+  const [modelos, setModelos] = useState([]);
 
   useEffect(() => {
-    getModelo();
+    getModelos();
   }, []);
 
-  //mostrar tipo Modelos
-  const getModelo = async () => {
+  const getModelos = async () => {
     try {
       const res = await axios.get(URI);
-      setModelo(res.data);
+      setModelos(res.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  //Eliminar tipo Modelos
   const deleteModelo = async (id) => {
     try {
       Swal.fire("Eliminado", "Tu Modelo ha sido eliminado", "success");
       await axios.delete(`${URI}/${id}`);
-      getModelo();
+      getModelos();
     } catch (error) {
       console.error(error);
     }
@@ -42,22 +41,20 @@ const GestionModelo = () => {
           <Link to={"/createModelo"} className="btn btn-primary mb-2 btn-left">
             Crear Modelo
           </Link>
-          <table className="table">
-            <thead className="table-primary">
-              <tr>
-                <th>Descripcion</th>
-                <th>ID Marca</th>
-                <th>Accion</th>
-              </tr>
-            </thead>
-            <tbody>
-              {modelo.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.descripcion}</td>
-                  <td>{item.idmarcas}</td>
-                  <td>
+          <div className="row">
+            {modelos.map((item) => (
+              <div className="col-md-4" key={item.id}>
+                <div className="card mb-3 l">
+                  <img
+                    src={item.imageURL} // Replace with the actual image URL
+                    className="card-img-top"
+                    alt={item.nombreModelo}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{item.nombreModelo}</h5>
+                    <p className="card-text">{item.marca.descripcion}</p>
                     <Link to={`/putModelo/${item.id}`} className="btn btn-info">
-                      <i className="fa-solid fa-pen-to-square"></i>
+                      Edit
                     </Link>
                     <button
                       onClick={() => {
@@ -65,13 +62,13 @@ const GestionModelo = () => {
                       }}
                       className="btn btn-danger"
                     >
-                      <i className="fa-solid fa-delete-left"></i>
+                      Delete
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

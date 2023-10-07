@@ -30,3 +30,4 @@ export {default as EditMarcas} from "./GestionMarcas/EditMarcas";
 export {default as GestionModelos} from "./GestionModelos/GestionModelos";
 export {default as CreateModelos} from "./GestionModelos/CreateModelos";
 export {default as EditModelos} from "./GestionModelos/EditModelos";
+

@@ -53,8 +53,8 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/putMarcas/:id" element={<EditMarcas />}/>
 
     <Route path="/gestionModelos" element={<GestionModelos />}/>
-    <Route path="/createModelos" element={<CreateModelos />}/>
-    <Route path="/putModelos/:id" element={<EditModelos />}/>
+    <Route path="/createModelo" element={<CreateModelos />}/>
+    <Route path="/putModelo/:id" element={<EditModelos />}/>
 
     <Route path="/gestionClientes" element={<GestionClientes />}/> 
     <Route path="/createClientes" element={<CreateClientes />}/> 
@@ -65,7 +65,6 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/putEmpleado/:id" element={<EditEmpleado />}/> 
   </Route>
 ))
-
 
 
 

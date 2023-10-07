@@ -1,7 +1,10 @@
 import db from "../database/db.js"; //Importing databse 
 import { DataTypes } from "sequelize"; //Importing Sequelize 
+import ModeloModels from "./ModelosModel.js";
+import MarcaModels from "./MarcaModel.js";
+import CombustibleModel from "./CombustibleModel.js";
 
-const RentaModel = db.define('vehiculos', {
+const VehiculoModel = db.define('vehiculos', {
     descripcion: 
     {
         type: DataTypes.INTEGER,
@@ -69,5 +72,10 @@ const RentaModel = db.define('vehiculos', {
     
 });
 
+VehiculoModel.belongsTo(MarcaModels, { foreignKey: 'marcaid', as: 'marca' });
+VehiculoModel.belongsTo(ModeloModels, { foreignKey: 'modeloid', as: 'modelo' });
+VehiculoModel.belongsTo(CombustibleModel, { foreignKey: 'tipocombustibleid', as: 'combustible' });
 
-export default RentaModel;
+
+
+export default VehiculoModel;

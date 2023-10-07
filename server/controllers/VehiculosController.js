@@ -1,10 +1,18 @@
 import { where } from 'sequelize';
 import VehiculosModel from '../models/VehiculosModel.js';
+import MarcaModels from '../models/MarcaModel.js';
+import ModeloModels from '../models/ModelosModel.js';
+import CombustibleModel from '../models/CombustibleModel.js';
 
 // Mostrar todas las marcas 
 export const getAllVehiculos = async (req, res) =>{
     try {
-        const Vehiculos = await VehiculosModel.findAll()
+        const Vehiculos = await VehiculosModel.findAll({
+            include: [
+            { model: MarcaModels, as: 'marca' }, 
+            { model: ModeloModels, as: 'modelo'}, 
+            { model: CombustibleModel, as: 'combustible'}
+        ]})
         res.json(Vehiculos)
     } catch (error) {
         res.json({message: error.message})

@@ -1,12 +1,15 @@
 import { where } from 'sequelize';
 import ModelosModel from '../models/ModelosModel.js'; 
+import MarcaModels from '../models/MarcaModel.js';
 
 
 
 // Mostrar todas las modelos
 export const getAllModelos = async (req, res) =>{
     try {
-        const modelos = await ModelosModel.findAll()
+        const modelos = await ModelosModel.findAll({
+            include: [{ model: MarcaModels, as: 'marca' }],
+          })
         res.json(modelos)
     } catch (error) {
         res.json({message: error.message})

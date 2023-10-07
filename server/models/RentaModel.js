@@ -1,5 +1,8 @@
 import db from "../database/db.js"; //Importing databse 
 import { DataTypes } from "sequelize"; //Importing Sequelize 
+import EmpleadosModel from "./EmpleadosModel.js";
+import VehiculoModel from "./VehiculosModel.js";
+import ClientesModel from "./ClientesModel.js";
 
 const RentaModel = db.define('renta', {
     empleadoid: 
@@ -54,6 +57,11 @@ const RentaModel = db.define('renta', {
         type: DataTypes.STRING
     }
 },);
+
+RentaModel.belongsTo(EmpleadosModel, { foreignKey: 'empleadoid', as: 'empleado' });
+RentaModel.belongsTo(VehiculoModel, { foreignKey: 'vehiculoid', as: 'vehiculo' });
+RentaModel.belongsTo(ClientesModel, { foreignKey: 'clienteid', as: 'cliente' });
+
 
 
 export default RentaModel;

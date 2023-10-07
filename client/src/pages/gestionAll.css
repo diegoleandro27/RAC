@@ -17,3 +17,7 @@
 .btn {
   margin: 0.2rem;
 }
+
+.width-1 {
+  max-width: 540px;
+}
