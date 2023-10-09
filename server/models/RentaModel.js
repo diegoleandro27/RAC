@@ -36,7 +36,8 @@ const RentaModel = db.define('renta', {
     
     fecharenta: 
     {
-        type: DataTypes.DATEONLY
+        type: DataTypes.DATEONLY,
+        allowNull: false
     }, 
     
     fechadevolucion: 
@@ -46,15 +47,22 @@ const RentaModel = db.define('renta', {
     }, 
 
     montodia: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
 
-    cantidaddia: {
-        type: DataTypes.INTEGER
+    cantidadia: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     comentario: {
         type: DataTypes.STRING
+    }, 
+
+    estado: {
+        type: DataTypes.STRING,
+        allowNull: false      
     }
 },);
 

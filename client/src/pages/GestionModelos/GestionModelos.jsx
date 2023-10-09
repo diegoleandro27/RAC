@@ -3,7 +3,6 @@ import axios from "axios";
 import "../gestionAll.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import vkw from "../";
 
 const URI = "http://localhost:3001/modelos";
 
@@ -35,41 +34,41 @@ const GestionModelo = () => {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col">
-          <h1 className="title">Gestion de Modelo</h1>
-          <Link to={"/createModelo"} className="btn btn-primary mb-2 btn-left">
-            Crear Modelo
-          </Link>
-          <div className="row">
+      <h1 className="title">Gestion de Modelo</h1>
+      <Link to={"/createModelo"} className="btn btn-primary mb-2 btn-left">
+        Crear Modelo
+      </Link>
+      <div className="table-responsive">
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre del Modelo</th>
+              <th>Marca</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
             {modelos.map((item) => (
-              <div className="col-md-4" key={item.id}>
-                <div className="card mb-3 l">
-                  <img
-                    src={item.imageURL} // Replace with the actual image URL
-                    className="card-img-top"
-                    alt={item.nombreModelo}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{item.nombreModelo}</h5>
-                    <p className="card-text">{item.marca.descripcion}</p>
-                    <Link to={`/putModelo/${item.id}`} className="btn btn-info">
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => {
-                        deleteModelo(item.id);
-                      }}
-                      className="btn btn-danger"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <tr key={item.id}>
+                <td>{item.nombreModelo}</td>
+                <td>{item.marca.descripcion}</td>
+                <td>
+                  <Link to={`/putModelo/${item.id}`} className="btn btn-info">
+                    Editar
+                  </Link>
+                  <button
+                    onClick={() => {
+                      deleteModelo(item.id);
+                    }}
+                    className="btn btn-danger ml-2"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
             ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   );

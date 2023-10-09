@@ -5,18 +5,18 @@ import "../gestionAll.css";
 import Swal from "sweetalert2";
 
 const URI = "http://localhost:3001/modelos";
-const MARCAS_URI = "http://localhost:3001/marcas"; // Añadiendo el acceso a la api de marcas para adquirir sus datos 
+const MARCAS_URI = "http://localhost:3001/marcas"; // Añadiendo el acceso a la api de marcas para adquirir sus datos
 
 const EditModelo = () => {
   const [idmarcas, setIdMarcas] = useState("");
-  const [nombremodelo, setNombreModelo] = useState("");
-  const [marcas, setMarcas] = useState([]); 
+  const [nombreModelo, setNombreModelo] = useState("");
+  const [marcas, setMarcas] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
     getModeloById();
-    getMarcas(); 
+    getMarcas();
   }, [id]);
 
   const getModeloById = async () => {
@@ -44,10 +44,10 @@ const EditModelo = () => {
     try {
       await axios.put(`${URI}/${id}`, {
         idmarcas: idmarcas,
-        nombremodelo: nombremodelo,
+        nombreModelo: nombreModelo,
       });
       Swal.fire("Actualizado", "Tu Modelo ha sido Actualizado", "success");
-      navigate("/gestionModelo");
+      navigate("/gestionModelos");
     } catch (error) {
       console.error("Error updating Modelo:", error);
     }
@@ -84,7 +84,7 @@ const EditModelo = () => {
           </label>
           <input
             type="text"
-            value={nombremodelo}
+            value={nombreModelo}
             onChange={(e) => setNombreModelo(e.target.value)}
             className="form-control"
             id="nombreModelo"

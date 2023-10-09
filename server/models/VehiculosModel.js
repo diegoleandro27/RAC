@@ -3,6 +3,7 @@ import { DataTypes } from "sequelize"; //Importing Sequelize
 import ModeloModels from "./ModelosModel.js";
 import MarcaModels from "./MarcaModel.js";
 import CombustibleModel from "./CombustibleModel.js";
+import TipoVehiculoModel from "./TipoVehiculosModel.js";
 
 const VehiculoModel = db.define('vehiculos', {
     descripcion: 
@@ -11,18 +12,18 @@ const VehiculoModel = db.define('vehiculos', {
         allowNull: false
     }, 
 
-    nochasis: 
+    vin: 
     {
         type: DataTypes.BIGINT, 
         allowNull: false
     }, 
     
-    nomotor: {
+    nmotor: {
         type: DataTypes.BIGINT, 
         allowNull: false
     }, 
     
-    noplaca: 
+    nplaca: 
     {
         type: DataTypes.BIGINT,
         allowNull: false
@@ -63,17 +64,12 @@ const VehiculoModel = db.define('vehiculos', {
             table: 'tipocombustibles',
             column: 'id'
         }
-    },
-
-    estado: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    
+    }
 });
 
 VehiculoModel.belongsTo(MarcaModels, { foreignKey: 'marcaid', as: 'marca' });
 VehiculoModel.belongsTo(ModeloModels, { foreignKey: 'modeloid', as: 'modelo' });
+VehiculoModel.belongsTo(TipoVehiculoModel, { foreignKey: 'tipovehiculoid', as: 'tipovehiculo' });
 VehiculoModel.belongsTo(CombustibleModel, { foreignKey: 'tipocombustibleid', as: 'combustible' });
 
 

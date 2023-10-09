@@ -3,6 +3,7 @@ import VehiculosModel from '../models/VehiculosModel.js';
 import MarcaModels from '../models/MarcaModel.js';
 import ModeloModels from '../models/ModelosModel.js';
 import CombustibleModel from '../models/CombustibleModel.js';
+import TipoVehiculoModel from '../models/TipoVehiculosModel.js';
 
 // Mostrar todas las marcas 
 export const getAllVehiculos = async (req, res) =>{
@@ -11,7 +12,8 @@ export const getAllVehiculos = async (req, res) =>{
             include: [
             { model: MarcaModels, as: 'marca' }, 
             { model: ModeloModels, as: 'modelo'}, 
-            { model: CombustibleModel, as: 'combustible'}
+            { model: CombustibleModel, as: 'combustible'},
+            { model: TipoVehiculoModel, as: 'tipovehiculo'}
         ]})
         res.json(Vehiculos)
     } catch (error) {
@@ -54,7 +56,7 @@ export const putVehiculos = async (req, res) => {
             }
         })
         res.json({
-            "message": "Marca actualizada correctamente"
+            "message": "Vehiculo actualizado correctamente"
         }); 
     } catch (error) {
         res.json({message: error.message}); 
