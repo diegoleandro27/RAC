@@ -54,6 +54,7 @@ const GestionVehiculo = () => {
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Tipo Combustible</th>
+                <th>Estado</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -68,6 +69,7 @@ const GestionVehiculo = () => {
                   <td>{item.marca.descripcion}</td>
                   <td>{item.modelo.nombreModelo}</td>
                   <td>{item.combustible.descripcion}</td>
+                  <td>{item.estado}</td>
                   <td>
                     <Link
                       to={`/putVehiculo/${item.id}`}

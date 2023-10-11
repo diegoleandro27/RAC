@@ -15,7 +15,7 @@ const CreateModelo = () => {
   const storeModelos = async (e) => {
     Swal.fire("Agregado", "Tu Modelo ha sido agregado", "success");
     e.preventDefault();
-    await axios.post(URI, { idmarcas: idmarcas, nombremodelo: nombremodelo });
+    await axios.post(URI, { idmarcas: idmarcas, nombreModelo: nombremodelo });
     navigate("/gestionModelos");
   };
 

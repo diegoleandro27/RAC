@@ -64,6 +64,11 @@ const VehiculoModel = db.define('vehiculos', {
             table: 'tipocombustibles',
             column: 'id'
         }
+    }, 
+
+    estado: { 
+        type: DataTypes.STRING,
+        allowNull: false
     }
 });
 

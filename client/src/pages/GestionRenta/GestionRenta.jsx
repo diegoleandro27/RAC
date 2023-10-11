@@ -10,6 +10,9 @@ const URI = "http://localhost:3001/renta";
 const GestionRenta = () => {
   const [filteredRentas, setFilteredRentas] = useState([]);
   const [filterCriteria, setFilterCriteria] = useState("");
+  const [fechaInicio, setFechaInicio] = useState("");
+  const [fechaFin, setFechaFin] = useState("");
+
   const [renta, setRentas] = useState([]);
 
   const componentPDF = useRef();
@@ -27,10 +30,17 @@ const GestionRenta = () => {
     try {
       const res = await axios.get(URI);
       setRentas(res.data);
+      filterByDate();
       setFilteredRentas(res.data);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const clearDateFilters = () => {
+    setFechaInicio("");
+    setFechaFin("");
+    filterByDate(); // Aplicar el filtro para mostrar todas las rentas nuevamente
   };
 
   const handleFilterChange = (e) => {
@@ -54,19 +64,56 @@ const GestionRenta = () => {
     }
   };
 
+  const filterByDate = () => {
+    // Filtra las rentas basadas en el rango de fechas
+    const filteredData = renta.filter((item) => {
+      const rentaDate = new Date(item.fecharenta);
+      const fechaInicioDate = new Date(fechaInicio);
+      const fechaFinDate = new Date(fechaFin);
+
+      return rentaDate >= fechaInicioDate && rentaDate <= fechaFinDate;
+    });
+
+    setFilteredRentas(filteredData);
+  };
+
   return (
     <div className="container">
       <h1 className="title">Gestion de Renta</h1>
       <div className=" d-flex">
         <Link
           to={"/createRenta"}
-          className="btn btn-primary mb-2 d-flex width-c"
+          className="btn btn-primary mb-2 d-flex width-c text-center"
         >
           Crear Renta
         </Link>
+
         <button className="btn btn-danger mb-2 " onClick={GenerarPDF}>
           PDF
         </button>
+
+        <div className="fecha_filtro">
+          <input
+            type="date"
+            className="form-control"
+            placeholder="Fecha de inicio"
+            value={fechaInicio}
+            onChange={(e) => setFechaInicio(e.target.value)}
+          />
+          <input
+            type="date"
+            className="form-control"
+            placeholder="Fecha de fin"
+            value={fechaFin}
+            onChange={(e) => setFechaFin(e.target.value)}
+          />
+          <button className="btn btn-primary" onClick={filterByDate}>
+            Filtrar por Fecha
+          </button>
+          <button className="btn btn-secondary" onClick={clearDateFilters}>
+            Limpiar Filtros de Fecha
+          </button>
+        </div>
       </div>
       <div className="table-responsive">
         <div className="mb-3 d-flex">

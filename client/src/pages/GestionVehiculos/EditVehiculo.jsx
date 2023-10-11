@@ -16,10 +16,10 @@ const EditVehiculo = () => {
   const [vin, setVin] = useState("");
   const [nmotor, setNMotor] = useState("");
   const [nplaca, setNPlaca] = useState("");
-  const [tipovehiculoid, setTipoVehiculoId] = useState(0);
-  const [marcaid, setMarcaId] = useState(0);
-  const [modeloid, setModeloId] = useState(0);
-  const [tipocombustibleid, setTipoCombustibleId] = useState(0);
+  const [tipovehiculoid, setTipoVehiculoId] = useState("");
+  const [marcaid, setMarcaId] = useState("");
+  const [modeloid, setModeloId] = useState("");
+  const [tipocombustibleid, setTipoCombustibleId] = useState("");
 
   const [marcas, setMarcas] = useState([]);
   const [modelo, setModelo] = useState([]);
@@ -42,7 +42,7 @@ const EditVehiculo = () => {
       setDescripcion(res.data.descripcion);
       setVin(res.data.vin);
       setNMotor(res.data.nmotor);
-      setNPlaca(res.data.nmotor);
+      setNPlaca(res.data.nplaca);
       setTipoVehiculoId(res.data.tipovehiculoid);
       setMarcaId(res.data.marcaid);
       setModeloId(res.data.modeloid);
@@ -60,6 +60,7 @@ const EditVehiculo = () => {
       console.error(error);
     }
   };
+
   const getModelos = async () => {
     try {
       const res = await axios.get(MODELOS_URI);
@@ -68,6 +69,7 @@ const EditVehiculo = () => {
       console.error(error);
     }
   };
+
   const getCombustible = async () => {
     try {
       const res = await axios.get(COMBUST_URI);
@@ -268,7 +270,6 @@ const EditVehiculo = () => {
             ))}
           </select>
         </div>
-
         <button type="submit" className="btn btn-primary">
           Guardar Vehiculo
         </button>

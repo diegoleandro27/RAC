@@ -1,0 +1,11 @@
+.containers {
+  height: 800px !important;
+}
+.colors {
+  background: linear-gradient(45deg, #000000, #a7572ad8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 76px;
+  font-weight: bold;
+}

@@ -27,6 +27,8 @@ const CreateVehiculo = () => {
   const [marcaid, setMarcaId] = useState(0);
   const [modeloid, setModeloId] = useState(0);
   const [tipocombustibleid, setTipoCombustibleId] = useState(0);
+  const [estado, setEstado] = useState("");
+  
 
   const navigate = useNavigate();
 
@@ -34,14 +36,15 @@ const CreateVehiculo = () => {
     e.preventDefault();
     try {
       const response = await axios.post(URI, {
-        descripcion,
-        vin,
-        nmotor,
-        nplaca,
-        tipovehiculoid,
-        marcaid,
-        modeloid,
-        tipocombustibleid,
+        descripcion: descripcion,
+        vin: vin,
+        nmotor: nmotor,
+        nplaca: nplaca,
+        tipovehiculoid: tipovehiculoid,
+        marcaid: marcaid,
+        modeloid: modeloid,
+        tipocombustibleid: tipocombustibleid,
+        estado: estado,
       });
       console.log("Response from server:", response.data);
       Swal.fire("Agregado", "Tu Vehiculo ha sido agregado", "success");
@@ -173,9 +176,7 @@ const CreateVehiculo = () => {
             }}
             required
           >
-            <option disabled value="">
-              Choose...
-            </option>
+            <option value="">Choose...</option>
             {marcas.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.descripcion}
@@ -197,9 +198,7 @@ const CreateVehiculo = () => {
             }}
             required
           >
-            <option disabled value="">
-              Choose...
-            </option>
+            <option value="">Choose...</option>
             {modelo
               .filter((item) => item.idmarcas === parseInt(selectedBrand))
               .map((item) => (
@@ -223,9 +222,7 @@ const CreateVehiculo = () => {
             }}
             required
           >
-            <option disabled value="">
-              Choose...
-            </option>
+            <option value="">Choose...</option>
             {combustible.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.descripcion}
@@ -247,9 +244,7 @@ const CreateVehiculo = () => {
             }}
             required
           >
-            <option disabled value="">
-              Choose...
-            </option>
+            <option value="">Choose...</option>
             {tipovehiculo.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.descripcion}
@@ -257,7 +252,23 @@ const CreateVehiculo = () => {
             ))}
           </select>
         </div>
-
+        <div className="col-5">
+          <label htmlFor="tipoVehiculoSelect" className="form-label">
+            Estado
+          </label>
+          <select
+            id="tipoVehiculoSelect"
+            className="form-select"
+            value={estado}
+            onChange={(e) => {
+              setEstado(e.target.value);
+            }}
+            required
+          >
+            <option>Choose...</option>
+            <option>Libre</option>
+          </select>
+        </div>
         <button type="submit" className="btn btn-primary">
           Guardar Vehiculo
         </button>

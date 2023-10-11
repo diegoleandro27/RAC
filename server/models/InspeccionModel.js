@@ -1,5 +1,8 @@
 import db from "../database/db.js"; //Importing databse 
 import { DataTypes } from "sequelize"; //Importing Sequelize 
+import EmpleadosModel from './EmpleadosModel.js'
+import VehiculosModel from './VehiculosModel.js'
+import ClientesModel from "./ClientesModel.js";
 
 const InspeccionModel = db.define('inspeccion', {
     vehiculoid: 
@@ -22,7 +25,7 @@ const InspeccionModel = db.define('inspeccion', {
         }
     }, 
     
-    ralladuras: {
+    ralladura: {
         type: DataTypes.BOOLEAN, 
         allowNull: false,
         
@@ -50,25 +53,10 @@ const InspeccionModel = db.define('inspeccion', {
         allowNull: false
     },
 
-    goma1: {
-        type: DataTypes.BOOLEAN,
+   estadogomas: {
+        type: DataTypes.STRING,
         allowNull: false
-    },
-
-    goma2: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
-
-    goma3: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
-
-    goma4: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
+   }, 
 
     fecha: {
         type: DataTypes.DATE,
@@ -84,5 +72,10 @@ const InspeccionModel = db.define('inspeccion', {
     }
 }, );
 
+InspeccionModel.belongsTo(EmpleadosModel, { foreignKey: 'empleadoid', as: 'empleado' });
+InspeccionModel.belongsTo(VehiculosModel, { foreignKey: 'vehiculoid', as: 'vehiculo' });
+InspeccionModel.belongsTo(ClientesModel, { foreignKey: 'clienteid', as: 'cliente' });
 
-export default InspeccionModel;
+
+
+export default InspeccionModel; 
