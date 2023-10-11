@@ -10,10 +10,6 @@ const Empleados_URI = "http://localhost:3001/empleados";
 const Clientes_URI = "http://localhost:3001/clientes";
 const INSPEC_URI = "http://localhost:3001/inspeccion";
 const CreateRenta = () => {
-  const [renta, setRenta] = useState([]);
-  const [fechaInicio, setFechaInicio] = useState("");
-  const [fechaFin, setFechaFin] = useState("");
-
   const [vehiculo, setVehiculo] = useState([]);
   const [cliente, setCliente] = useState([]);
   const [empleado, setEmpleado] = useState([]);
@@ -37,14 +33,6 @@ const CreateRenta = () => {
   const [estadogomas, setEstadoGomas] = useState("");
   const [fecha, setFecha] = useState(Date);
 
-  const getRenta = async () => {
-    try {
-      const res = await axios.get(URI);
-      setRenta(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const getVehiculos = async () => {
     try {
       const res = await axios.get(VEHICULOS_URI);
@@ -53,28 +41,6 @@ const CreateRenta = () => {
       console.error(error);
     }
   };
-
-  // const checkVehicleAvailability = async () => {
-  //   try {
-  //     // Hacer una solicitud para obtener el estado de la renta del vehículo seleccionado
-  //     const res = await axios.get(`${VEHICULOS_URI}?vehiculoid=${vehiculoid}`);
-
-  //     // Verificar el estado de la renta del vehículo seleccionado
-  //     if (res.data.length > 0) {
-  //       const rental = res.data; // Assuming there's only one matching rental
-  //       if (rental.estado === "Rentado") {
-  //         return true; // El vehículo está rentado
-  //       }
-  //     }
-  //     return false; // El vehículo no está rentado
-  //   } catch (error) {
-  //     console.error(
-  //       "Error al verificar la disponibilidad del vehículo:",
-  //       error
-  //     );
-  //     return false; // En caso de error, considera que el vehículo no está rentado
-  //   }
-  // };
 
   const navigate = useNavigate();
   const storeRentas = async (e) => {
@@ -147,8 +113,8 @@ const CreateRenta = () => {
         estadogomas: estadogomas,
       });
 
-      axios.post(VEHICULOS_URI, {
-        estado: estado,
+      axios.put(`${VEHICULOS_URI}/${vehiculoid}`, {
+        estado: estado, // El nuevo estado que se ingresó en el formulario de renta
       });
 
       Swal.fire("Agregado", "Tu Renta ha sido agregada", "success");
@@ -163,7 +129,6 @@ const CreateRenta = () => {
     getVehiculos();
     getClientes();
     getEmpleados();
-    getRenta();
   }, []);
 
   const getClientes = async () => {
